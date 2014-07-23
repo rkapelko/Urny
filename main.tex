@@ -93,8 +93,8 @@ acyclic (i.e. without directed cycles) graph  $\mathcal{G} = (V,E)$; we have als
 $(U_a)_{a \in V}$ indexed by nodes of  $\mathcal{G}$. 
 Each urn contains some number of balls of two kinds - say black and white balls.  
 Initially each urn contains only white balls. 
-Let us recall that a node $a\in V$ is a source node if there is no $b\in V$
-such that $(b,a) \in E$. Similarly, a node $a\in V$ is a sink node 
+Let us recall that a node $a\in V$ is a \textit{source node} if there is no $b\in V$
+such that $(b,a) \in E$. Similarly, a node $a\in V$ is a \textit{sink node} 
 if there is no $b\in V$ such that $(a,b) \in E$.
 At each round (enumerated by natural numbers): 
 \begin{enumerate}
@@ -125,10 +125,13 @@ badan kul-urn ?}
 
 \subsection{Organization of this paper}
 
-Below we present some basic facts and notation. In Section~\ref{General} we investigate a 
-general model. In Section~\ref{Serial} we present a special (however most important for applications)
+%Below we present some basic facts and notation. 
+In Section~\ref{General} we investigate a 
+general model of system of Urns. 
+In Section~\ref{Serial} we present a special (however the most important for applications)
 model wherein urns are assign in a row and balls are consecutively  moved from one urn to another. We present 
-several results including some asymptotics. In Section~\ref{Parallel} we investigate 
+several results including some asymptotics. 
+In Section~\ref{Parallel} we investigate 
 a system when urns (except a single sink and source) are arrange in parallel. 
 We compare some strategies of arranging  urns in Section~\ref{Comparison}. 
 In Section~\ref{MIX} we present how our results can be applied to analysis of so-called 
@@ -136,21 +139,21 @@ flooding (blending) attack against MIX protocols.
 %We conclude in~\ref{Con}.  
 
 
-\subsection{Preliminary facts}
+\subsection{Notations ans preliminary facts}
+ 
+We denote by $\E{X}$ the expected value of the random variable $X$.
+If $f(z) = \sum_{i} a_i \cdot z^i$ is a formal power series 
+then we define the coefficient extractor as $[z^{i}]f(z) = a_i$ (see \cite{FLA}, Chapter 1).
+We denote by $|A|$ the cardinality of the set $A$.  
 
-In this section we recall some facts about some special function which will be used 
-in the analysis in next sections. The partial exponential function $e_n(x)$ is defined 
-by the formula
-$$
-e_n(x) = \sum_{k=0}^{n} \frac{x^k}{k!}.
-$$
-It is well known (e.g., \cite{WolframFS}) that the sequence $(e_n(n)/e^n)_{n\geq 0}$ is decreasing and
-
+The partial exponential function $e_n(x)$ is defined by the formula
+$e_n(x) = \sum_{k=0}^{n} \frac{x^k}{k!}$.
+The sequence $(e_n(n)/e^n)_{n\geq 0}$ is decreasing and
 \begin{equation}
 \label{expo}
-\frac{e_n(n)}{e^n} = \frac12 + \BigO{1/\sqrt{n}}~.
+\frac{e_n(n)}{e^n} = \frac12 + \BigO{\frac{1}{\sqrt{n}}}~.
 \end{equation}
-
+(see e.g. \cite{WolframFS}).
 
 The Euler Gamma function for $z>0$ is defined by the formula 
 $\Gamma(z) = \int_{0}^{\infty} x^{z-1} e^{-x} dx$. For natural numbers $n$ we have
@@ -180,9 +183,7 @@ sequences.
 
 The incomplete beta function admits an analytical continuation for other values
 of parameters. We have, among others, $\IBETAREG{z}{a}{0}=0$ for $a>0$.
- 
-We denote by $\E{X}$ the expected value of the random variable $X$. Moreover 
-if $f(z) = \sum_{i} a_i \cdot z^i$ then $[z^]f(z) = a_i$.  
+
 
 \section{General Model}\label{General}
 
@@ -191,7 +192,7 @@ Let $N=(n_a)_{a\in V}$ denotes capacities of urns $(U_a)_{a\in V}$,
 i.e. $n_a$ is the initial number of white balls in the urn $U_a$.
 We call the triple $\mathcal{U} = (V,E,N)$ 
 a \textit{system of connected urns}. Note that the number of balls during each process is 
-fixed for each urn. Indeed each ball is replaced in each by exactly one. 
+fixed for each urn. Indeed, each ball is replaced in each step by exactly one ball. 
 
 \input{rycina1.tex}
 
@@ -201,16 +202,16 @@ from some source to some sink goes through the node $a$.
 If $(a,b) \in E$ then 
 we denote by $p_{ab}$ the probability of the event that the edge $(a,b)$ 
 is on the randomly chosen path.
-Then, if $a$ is a source node then $p_a = \frac{1}{S}$ where $S$ is the 
+Note that if $a$ is a source node then $p_a = \frac{1}{S}$ where $S$ is the 
 number of source nodes in the graph $\mathcal{G}$.  
 Moreover $p_{ab} = \frac{p_a}{out(a)}$, where 
 $out(a) = |\{c\in V: (a,c)\in E\}|$ and
 $$
-	p_a = \sum \{p_{ba}: (b,a)\in E\}
+	p_a = \sum \{p_{ba}: (b,a)\in E\} ~,
 $$
 when $a$ is not a source node. This observation allow us to recursively 
 calculate probabilities $p_a$ and $p_{bc}$ for each $a\in V$ and 
-$(b,c) \in E$.
+$(b,c) \in E$.\\
 
 Let $B_a(t)$ denotes the number of black balls in the urn $U_a$ 
 after the round $t$. Notice that $B_a(0) = 0$ for each $a\in V$.
@@ -379,6 +380,30 @@ $W_a(0) = \ldots = W_a(d(a)) = n_a$ and, if $d(a)$ is to small,
 we may solve explicitly the equation (\ref{eq:generalRecurrenceWhite}) for
 sufficiently many small values of the time parameter $t$.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% JCI: TO JEST PRZYKLAD, KTÓRY DODAŁEM PO RECENZJI
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\par
+\textbf{Example}. Let $\mathcal{G}= (\{0,1,2\},E,N)$ where $E$=$\{(0,1),(1,2)\}$
+and $N(0)$=$N(1)$=$N(2)$ = $n>1$. Then $prec{2} = \{0,1,2\}$, $p_0 = p_1 = p_2 = 1$, so
+$\Delta_0 = \Delta_1 = \Delta_1 =1 - \frac1n$. Hence $D(2) = \{1-\frac1n\}$ and
+$deg_2(1-\frac1n)=3$. 
+From Theorem \ref{thm:toLineraAlgebra} we deduce that 
+$\E{W_2(t)} = p(t) (1-\frac1n)^t$ for some polynomial $p(t)$ of degree less than $3$.
+Let $p(t) = a + b t + ct^2$. Notice that $\E{W_2(0)}$ = $\E{W_2(1)}$ = $\E{W_2(2)}$ = $n$,
+hence $ n = p(0)(1-\frac1n)^0 = a$, 
+$n = p(1)(1-\frac1n)$ = $(a+b+c)(1-\frac1n)$ and
+$n = p(2)(1-\frac1n)^2$ = $(a+2b+4c)(1-\frac1n)^2$.    
+The solution of this system of linear equations (in variables $a$, $b$ and $c$) is given by 
+$a =  n$, $b= -\frac{3 n-2 n^2}{2 (n-1)^2}$, $c= \frac{n}{2 (n-1)^2}$, hence
+$$
+  \E{W_2(t)} = n\left(1 + \frac{2n-3}{2(n-1)^2}t + \frac{1}{2 (n-1)^2} t^2\right)\left(1-\frac1n\right)^t~.
+$$
+In a similar way we may show that 
+$\E{W_1(t)} = n \left(1 + \frac{t}{n-1}\right) \left(1-\frac{1}{n}\right)^t$
+and, of course, that $\E{W_0(t)}$  = $n (1-\frac1n)^t$. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
